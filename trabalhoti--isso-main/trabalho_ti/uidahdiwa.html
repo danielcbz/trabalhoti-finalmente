@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informações do JSON em um Quadrado</title>
+<style>
+    .quadrado {
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div id="infoQuadrado" class="quadrado"></div>
+
+<script>
+// Suponha que seu JSON esteja armazenado em uma variável chamada 'dados'
+const dados = {
+  "nome": "João",
+  "idade": 25,
+  "cidade": "São Paulo"
+};
+
+// Função para exibir as informações do JSON no quadrado
+function exibirInformacoes() {
+    const quadrado = document.getElementById('infoQuadrado');
+    quadrado.innerHTML = `
+        <h2>Informações:</h2>
+        <p><strong>Nome:</strong> ${dados.nome}</p>
+        <p><strong>Idade:</strong> ${dados.idade}</p>
+        <p><strong>Cidade:</strong> ${dados.cidade}</p>
+    `;
+}
+
+// Chame a função para exibir as informações ao carregar a página
+window.onload = exibirInformacoes;
+</script>
+
+</body>
+</html>
