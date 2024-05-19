@@ -1,13 +1,30 @@
-const replitJsonUrl = "https://replit.com/join/auffqfdydk-ygabsxw";
-  function exibirInformacoes() {
-    const quadrado = document.getElementById('infoQuadrado');
-    quadrado.innerHTML = `
-        <h2>Informações:</h2>
-        <p><strong>Nome:</strong> ${dados.nome}</p>
-        <p><strong>Idade:</strong> ${dados.idade}</p>
-        <p><strong>Cidade:</strong> ${dados.cidade}</p>
-    `;
+const receitasContainer = document.querySelector(".receitas")
+const urlFetch = "https://d2c501fa-4177-4d7b-a69b-81eb77e71b05-00-1wjvhqjrblfl5.kirk.replit.dev/receitas"
+const filtro = "sobremesa"
+let receitas = []
+
+const loadData = async ()  => {
+  const response = await fetch(urlFetch)
+  const data = await response.json()
+
+  receitas = data.filter(receita => {
+    if(receita.filtro) {
+      return receita.filtro.includes(filtro)
+    }
+  })
+
+  receitas.forEach(receita => {
+    receitasContainer.innerHTML += `
+      <div class="col">
+        <a href="#" class="card">
+          <img src="${receita.imagem}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${receita.nome}</h5>
+          </div>
+        </a>
+      </div>
+    `
+  })
 }
 
-// Chame a função para exibir as informações ao carregar a página
-window.onload = exibirInformacoes;
+window.onload = loadData
